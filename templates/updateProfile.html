@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile Info</title>
+    <link rel="stylesheet"
+          href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+  </script>
+
+    <script src=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js">
+  </script>
+
+
+      <style>
+Body {
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+button {
+       background-color: #4CAF50;
+       width: 100%;
+        color: black;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+        font-weight:bold;
+         }
+ form {
+        border: 3px solid #f1f1f1;
+    }
+ input[type=text], input[type=password], input[type=email], input[type=number] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid green;
+        box-sizing: border-box;
+    }
+ button:hover {
+        opacity: 0.7;
+    }
+  .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        margin: 10px 5px;
+    }
+
+
+ .container {
+        padding: 25px;
+        margin-left:300px;
+        width:50%;
+        background-color: lightblue;
+    }
+
+ </style>
+
+</head>
+<body>
+<script>
+function ftnValidate(){
+    var fname, lname, email, addr1, addr2, city, state, pin, pwd;
+    fname = document.getElementById("fname").value;
+    lname = document.getElementById("lname").value;
+    email = document.getElementById("email").value;
+    addr1 = document.getElementById("addr1").value;
+    addr2 = document.getElementById("addr2").value;
+    city = document.getElementById("city").value;
+    state = document.getElementById("state").value;
+    pin = document.getElementById("pin").value;
+    if(fname.length == 0 || containsSpecialChars(fname) == true){
+        document.getElementById("fname").value="";
+        alert("First Name is either blank or has special characters");}
+    else if(lname.length == 0 || containsSpecialChars(lname) == true){
+        document.getElementById("lname").value="";
+        alert("Last Name is either blank or has special characters");}
+    else if(email.length == 0 || containsSpecialChars(email) == true){
+        document.getElementById("email").value
+        alert("Email id is either blank or has special characters");}
+    else if(addr1.length == 0 || containsSpecialChars(addr1) == true){
+        document.getElementById("addr1").value = "";
+        alert("Address 1 values are either blank or has special characters");}
+    else if(addr2.length == 0 || containsSpecialChars(addr2) == true){
+        document.getElementById("addr2").value = "";
+        alert("Address 2 values are either blank or has special characters");}
+    else if(city.length == 0 || containsSpecialChars(city) == true){
+        document.getElementById("city").value = "";
+        alert("City is either blank or has special characters");}
+    else if(state.length == 0 || containsSpecialChars(state) == true){
+        document.getElementById("state").value = "";
+        alert("State is either blank or has special characters");}
+     else if(pin.length == 0 || containsSpecialChars(pin) == true){
+        document.getElementById("pin").value = "";
+        alert("Pincode is either blank or has special characters");}
+     else
+        document.getElementById("frmUpdateProfile").submit();
+}
+function containsSpecialChars(str) {
+  const specialChars = /[`!#$%^&*()+\-=\[\]{};':"\\|,<>\/?~]/;
+  return specialChars.test(str);
+}
+
+       function ftnLogout(){
+            document.getElementById("frmUpdateProfile").action="/login";
+            document.getElementById("frmUpdateProfile").submit();
+        }
+</script>
+    <h1 align="center">Update Profile Information</h1>
+    <form id="frmUpdateProfile" align="center" action="/update_Profile" method="post">
+         <h1>
+            <input type="button" class='btn btn-success pull-right' value="Logout" onclick="ftnLogout()" />
+        </h1>
+        <div class="container">
+            <table align="center" style="width:100%">
+
+                <tr>
+                    <td style="text-align:right"><label>User First Name : </label></td>
+                    <td ><input type="text" name="FName" id = "fname" value={{result[0]}}></td>
+                    <td style="text-align:right"><label>User Last Name : </label></td>
+                    <td ><input type="text" name="LName" id = "lname" value={{result[1]}}></td>
+                    <td style="text-align:left"></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><label>User E-mail : </label></td>
+                    <td><input type="email" name="Email" id = "email" value={{result[2]}} readonly/></td>
+                    <td style="text-align:right"><label>Address Line 1 : </label></td>
+                    <td><input type="text" name="Addr1" id = "addr1" value={{result[3]}}></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>Address Line 2 : </label></td>
+                    <td><input type="text" name="Addr2" id = "addr2" value={{result[4]}}></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>City : </label></td>
+                    <td> <input type="text" name="City" id = "city" value={{result[5]}}></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>State : </label></td>
+                    <td><input type="text" name="State" id = "state" value={{result[6]}}></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>Pincode : </label></td>
+                    <td><input type="number" name="Pin" id = "pin" value={{result[7]}}></td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+            <td align="right"><button type="button" onclick="ftnValidate()" id="btn">Update Profile</button></td>
+            <td align="left"><button type="button" onclick="history.back()">Back</button></td>
+
+        </div>
+    </form>
+</body>
+</html>

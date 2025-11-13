@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <style>
+Body {
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+button {
+       background-color: #4CAF50;
+       width: 100%;
+        color: black;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+        font-weight:bold;
+         }
+ form {
+        border: 3px solid #f1f1f1;
+    }
+ input[type=text], input[type=password], input[type=email] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid green;
+        box-sizing: border-box;
+    }
+ button:hover {
+        opacity: 0.7;
+    }
+  .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        margin: 10px 5px;
+    }
+
+
+ .container {
+        padding: 25px;
+        margin-left:300px;
+        width:50%;
+        background-color: lightblue;
+    }
+
+ </style>
+
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function ftnLogin(){
+        document.getElementById("frmLogin").action="/login";
+        document.getElementById("frmLogin").submit();
+    }
+    function ftnRegUser(){
+        document.getElementById("frmLogin").action="/register_user";
+        document.getElementById("frmLogin").submit();
+    }
+</script>
+<form id="frmLogin" action="/login" align="center">
+        <div class="container">
+            <h1> Welcome to IT Resource Management Portal</h1>
+            <label>Existing User</label>
+            <button type="button" onclick="ftnLogin()">Login</button>
+            <label>New User</label>
+           <button type="button" onclick="ftnRegUser()">Register</button>
+         </div>
+</form>
+<h1>{{return_value}}</h1>
+</body>
+</html>

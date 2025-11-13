@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration of New User</title>
+          <style>
+Body {
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+button {
+       background-color: #4CAF50;
+       width: 100%;
+        color: black;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+        font-weight:bold;
+         }
+ form {
+        border: 3px solid #f1f1f1;
+    }
+ input[type=text], input[type=password], input[type=email], input[type=number] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid green;
+        box-sizing: border-box;
+    }
+ button:hover {
+        opacity: 0.7;
+    }
+  .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        margin: 10px 5px;
+    }
+
+
+ .container {
+        padding: 25px;
+        margin-left:300px;
+        width:50%;
+        background-color: lightblue;
+    }
+
+ </style>
+
+</head>
+<body>
+<script>
+var check = function() {
+    if (document.getElementById('pwd1').value ==
+            document.getElementById('pwd2').value) {
+                   document.getElementById('message').style.color = 'green';
+                   document.getElementById('message').innerHTML = 'Matching';
+                   document.getElementById('pwd').value = document.getElementById('pwd1').value;
+    } else {
+                   document.getElementById('message').style.color = 'red';
+                   document.getElementById('message').innerHTML = 'Not Matching';
+                   document.getElementById('pwd').value='';
+    }
+}
+function ftnValidate(){
+    var fname, lname, email, addr1, addr2, city, state, pin, pwd;
+    fname = document.getElementById("fname").value;
+    lname = document.getElementById("lname").value;
+    email = document.getElementById("email").value;
+    addr1 = document.getElementById("addr1").value;
+    addr2 = document.getElementById("addr2").value;
+    city = document.getElementById("city").value;
+    state = document.getElementById("state").value;
+    pin = document.getElementById("pin").value;
+    if(fname.length == 0 || containsSpecialChars(fname) == true){
+        document.getElementById("fname").value="";
+        alert("First Name is either blank or has special characters");}
+    else if(lname.length == 0 || containsSpecialChars(lname) == true){
+        document.getElementById("lname").value="";
+        alert("Last Name is either blank or has special characters");}
+    else if(email.length == 0 || containsSpecialChars(email) == true){
+        document.getElementById("email").value
+        alert("Email id is either blank or has special characters");}
+    else if(addr1.length == 0 || containsSpecialChars(addr1) == true){
+        document.getElementById("addr1").value = "";
+        alert("Address 1 values are either blank or has special characters");}
+    else if(addr2.length == 0 || containsSpecialChars(addr2) == true){
+        document.getElementById("addr2").value = "";
+        alert("Address 2 values are either blank or has special characters");}
+    else if(city.length == 0 || containsSpecialChars(city) == true){
+        document.getElementById("city").value = "";
+        alert("City is either blank or has special characters");}
+    else if(state.length == 0 || containsSpecialChars(state) == true){
+        document.getElementById("state").value = "";
+        alert("State is either blank or has special characters");}
+     else if(pin.length == 0 || containsSpecialChars(pin) == true){
+        document.getElementById("pin").value = "";
+        alert("Pincode is either blank or has special characters");}
+     else if(document.getElementById("pwd1").value.length == 0 || document.getElementById("pwd2").value.length == 0)
+        alert("Password values cannot be blank");
+     else
+        document.getElementById("frmCreateUser").submit();
+}
+function containsSpecialChars(str) {
+  const specialChars = /[`!#$%^&*()+\-=\[\]{};':"\\|,<>\/?~]/;
+  return specialChars.test(str);
+}
+</script>
+    <h1 align="center">Register New User</h1>
+    <form id="frmCreateUser" align="center" action="/create_User" method="post">
+        <div class="container">
+            <table align="center" style="width:100%" >
+                <tr>
+                    <td style="text-align:right"><label>User First Name : </label></td>
+                    <td ><input type="text" name="FName" id = "fname" placeholder="enter your first name"/></td>
+                    <td style="text-align:right"><label>User Last Name : </label></td>
+                    <td ><input type="text" name="LName" id = "lname" placeholder="enter your last name"/></td>
+                    <td style="text-align:left"></td>
+                </tr>
+                <tr>
+                    <td style="text-align:right"><label>User E-mail : </label></td>
+                    <td><input type="email" name="Email" id = "email" placeholder="enter your email id"/></td>
+                    <td style="text-align:right"><label>Address Line 1 : </label></td>
+                    <td><input type="text" name="Addr1" id = "addr1" placeholder="enter Address Line 1"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>Address Line 2 : </label></td>
+                    <td><input type="text" name="Addr2" id = "addr2" placeholder="enter Address Line 2"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>City : </label></td>
+                    <td> <input type="text" name="City" id = "city" placeholder="enter City"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>State : </label></td>
+                    <td><input type="text" name="State" id = "state" placeholder="enter state"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>Pincode : </label></td>
+                    <td><input type="number" name="Pin" id = "pin" placeholder="enter pin code"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>Password : </label></td>
+                    <td><input type="password" name="passWord1" id="pwd1" onkeyup="check();" placeholder="enter your password"/></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right"><label>Confirm Password : </label></td>
+                    <td><input type="password" name="passWord2" id="pwd2" onkeyup="check();" placeholder= "Re-enter your password"/></td>
+                    <td><span id="message" style="text-align:left">?</span></td>
+                </tr>
+                </table>
+                <input type="hidden" name="Pwd" id="pwd"/>
+            <button type="button" onclick="ftnValidate()" id="btn">Register</button>
+            <button type="button" onclick="history.back()">Back</button>
+        </div>
+    </form>
+</body>
+</html>

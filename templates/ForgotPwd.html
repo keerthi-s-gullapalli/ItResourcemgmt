@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+ <style>
+    table, th, td {
+        border: 2px;
+        border-collapse: collapse;
+        text-align:center;
+    }
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    Body {
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+button {
+       background-color: #4CAF50;
+       width: 100%;
+        color: black;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+        font-weight:bold;
+         }
+ form {
+        border: 3px solid #f1f1f1;
+    }
+ input[type=text], input[type=password], input[type=email] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid green;
+        box-sizing: border-box;
+    }
+ button:hover {
+        opacity: 0.7;
+    }
+  .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        margin: 10px 5px;
+    }
+
+
+ .container {
+        padding: 25px;
+        margin-left:300px;
+        width:50%;
+        background-color: lightblue;
+    }
+
+
+ </style>
+<script>
+var check = function() {
+    if (document.getElementById('pwd1').value ==
+            document.getElementById('pwd2').value) {
+                   document.getElementById('message').style.color = 'green';
+                   document.getElementById('message').innerHTML = 'Matching';
+                   document.getElementById('pwd').value = document.getElementById('pwd1').value;
+    } else {
+                   document.getElementById('message').style.color = 'red';
+                   document.getElementById('message').innerHTML = 'Not Matching';
+                   document.getElementById('pwd').value='';
+    }
+}
+
+        function validate(){
+        var uname=document.getElementById("uname").value;
+        var pwd = document.getElementById("pwd").value;
+        if (uname == ""){
+            alert("User Name  blank");
+            return false; }
+        else if (pwd == ""){
+           alert("Password cannot be blank");
+           return false; }
+        else
+            return true;
+ }
+ function ftnChangePwdSubmit(){
+    var uname, pwd;
+    uname=document.getElementById("uname").value;
+    pwd=document.getElementById("pwd").value;
+    if(uname.length != 0 && pwd.length != 0)
+        document.getElementById("frmForgotPwd").submit();
+    else
+        alert("Please enter the details..User Name or Password cannot be blank");
+   }
+</script>
+ </head>
+<body>
+<h1 align="center">Forgot Password</h1>
+<form id="frmForgotPwd" action="/update_Pwd" align="center"  method="post" >
+    <div class="container">
+        <table class="center">
+            <tr>
+                <td>
+                    <label>User Name</label>
+                </td>
+                <td>
+                    <input type="email" name="userName" id = "uname" placeholder="enter your email id"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password</label>
+                </td>
+                <td>
+                    <input type="password" name="passWord1" id="pwd1" onkeyup="check()" placeholder="enter your password"/>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    <label>Re-Enter Password</label>
+                </td>
+                <td>
+                    <input type="password" name="passWord2" id="pwd2" onkeyup="check()" placeholder="enter your password again"/>
+
+                </td>
+                 <td><span id="message" style="text-align:left">No Password Entered</span></td>
+            </tr>
+            <tr><td><input type="hidden" name="Pwd" id="pwd"/></td></tr>
+        </table>
+        <button type="button" onclick="ftnChangePwdSubmit()" id="btn">Change Password</button>
+        <button type="button" onclick="history.back()">Back</button>
+    </div>
+    <h1 align="center" id="h1">{{return_value}}</h1>
+</form>
+</body>
+</html>

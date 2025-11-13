@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="stylesheet" href="styles.css">
+ <style>
+Body {
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+button {
+       background-color: #4CAF50;
+       width: 100%;
+        color: black;
+        padding: 15px;
+        margin: 10px 0px;
+        border: none;
+        cursor: pointer;
+        font-weight:bold;
+         }
+ form {
+        border: 3px solid #f1f1f1;
+    }
+ input[type=text], input[type=password], input[type=email] {
+        width: 100%;
+        margin: 8px 0;
+        padding: 12px 20px;
+        display: inline-block;
+        border: 2px solid green;
+        box-sizing: border-box;
+    }
+ button:hover {
+        opacity: 0.7;
+    }
+  .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        margin: 10px 5px;
+    }
+
+
+ .container {
+        padding: 25px;
+        margin-left:300px;
+        width:50%;
+        background-color: lightblue;
+    }
+</style>
+
+<script>
+if (window.performance) {
+     var navEntries = window.performance.getEntriesByType('navigation');
+     if (navEntries.length > 0 && navEntries[0].type === 'back_forward') {
+          alert('As per API lv2, this page is load from back/forward');
+     } else if (window.performance.navigation
+          && window.performance.navigation.type == window.performance.navigation.TYPE_BACK_FORWARD) {
+          alert('As per API lv1, this page is load from back/forward');
+     } else {
+          alert('This is normal page load');
+     }
+} else {
+     console.log("Unfortunately, your browser doesn't support this API");
+}
+        function validate(){
+        var uname=document.getElementById("uname").value;
+        var pwd = document.getElementById("pwd").value;
+        if (uname == ""){
+            alert("User Name  blank");
+            return false; }
+        else if (pwd == ""){
+           alert("Password cannot be blank");
+           return false; }
+        else
+            return true;
+ }
+ function ftnLoginSubmit(){
+    var uname, pwd;
+    uname=document.getElementById("uname").value;
+    pwd=document.getElementById("pwd").value;
+    if(uname.length != 0 && pwd.length != 0){
+        document.getElementById("frmLoginDetails").action="/form_login";
+        document.getElementById("frmLoginDetails").submit();
+    }
+    else
+        alert("Please enter the details..User Name or Password cannot be blank");
+ }
+ function ftnForgotPwd(){
+        document.getElementById("frmLoginDetails").action="/forgot_Pwd";
+        document.getElementById("frmLoginDetails").submit();
+ }
+</script>
+ </head>
+<body>
+<h1 align="center">Login</h1>
+<form id="frmLoginDetails" action="/form_login" align="center"  method="post" >
+         <div class="container">
+            <label>Username : </label>
+            <input type="email" name="userName" id="uname" placeholder="enter your email" required />
+             <label>Password : </label>
+            <input type="password" name="passWord" id="pwd" placeholder="enter your password" required />
+            <button type="button" onclick="ftnLoginSubmit()">Login</button>
+            <button type="button" class="cancelbtn"> Cancel</button>
+             <button type="button" class="cancelbtn" onclick="ftnForgotPwd()"> Forgot Password</button>
+        </div>
+</form>
+<h1 align="center" id="h1">{{return_value}}</h1>
+</body>
+</html>
